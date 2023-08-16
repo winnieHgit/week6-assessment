@@ -3,6 +3,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { useRouter } from "next/router";
 import axios from "axios";
+import NavBar from "./components/NavBar";
 
 const RegisterFromValidator = z.object({
   username: z.string().min(5),
@@ -35,6 +36,7 @@ export default function RegisterationPage() {
 
   return (
     <main>
+        <NavBar />
       <h1>Registeration Form</h1>
       <div>
         <form id="sign-up-form" onSubmit={handleSubmit(handleRegistrationForm)}>

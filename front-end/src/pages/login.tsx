@@ -4,6 +4,7 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import React from "react";
 import { useRouter } from "next/router";
+import NavBar from "./components/NavBar";
 
 //create a ligin validator
 const LoginFromValidator = z
@@ -58,10 +59,11 @@ const LoginPage = () => {
 
   return (
     <>
-      <div className="login-container">
+      <div>
+        <NavBar />
         <h1>Login</h1>
         <form className="login-form" onSubmit={handleSubmit(handleLoginSubmit)}>
-          <div className="login-form-element">
+          <div>
             <label htmlFor="loginUsername">🖊 Username</label>
             <input
               id="loginUsername"
@@ -73,7 +75,7 @@ const LoginPage = () => {
               <p className="error-msg">{errors.username.message} </p>
             )}
           </div>
-          <div className="login-form-element">
+          <div>
             <label htmlFor="loginPassword">🔓 Password</label>
             <input
               id="loginPassword"
