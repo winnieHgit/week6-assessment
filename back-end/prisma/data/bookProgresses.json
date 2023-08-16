@@ -1,0 +1,32 @@
+[
+  {
+    "id": 1,
+    "pageProgress": 50,
+    "bookId": 5,
+    "userId": 2
+  },
+  {
+    "id": 2,
+    "pageProgress": 25,
+    "bookId": 6,
+    "userId": 5
+  },
+  {
+    "id": 3,
+    "pageProgress": 75,
+    "bookId": 2,
+    "userId": 1
+  },
+  {
+    "id": 4,
+    "pageProgress": 10,
+    "bookId": 9,
+    "userId": 5
+  },
+  {
+    "id": 5,
+    "pageProgress": 90,
+    "bookId": 4,
+    "userId": 1
+  }
+]

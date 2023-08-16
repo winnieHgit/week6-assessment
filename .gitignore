@@ -2,11 +2,13 @@
 
 # dependencies
 /node_modules
+/front-end/node_modules
 /.pnp
 .pnp.js
 
 # testing
 /coverage
+/front-end/coverage
 
 # next.js
 /.next/
@@ -14,6 +16,7 @@
 
 # production
 /build
+/front-end/build
 
 # misc
 .DS_Store
@@ -33,3 +36,7 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+/back-end/node_modules
+# Keep environment variables out of version control
+.env

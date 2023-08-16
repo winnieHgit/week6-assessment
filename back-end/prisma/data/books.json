@@ -1,0 +1,72 @@
+[
+  {
+    "id": 1,
+    "title": "To Kill a Mockingbird",
+    "coverImgUrl": "https://cdn.kobo.com/book-images/4e1af857-e0e8-45fa-8922-e4bff584beca/1200/1200/False/to-kill-a-mockingbird-4.jpg",
+    "author": "Harper Lee",
+    "pageCount": 281
+  },
+  {
+    "id": 2,
+    "title": "1984",
+    "coverImgUrl": "https://mir-s3-cdn-cf.behance.net/project_modules/max_1200/8e22da57518685.59d8fe59dbdfc.png",
+    "author": "George Orwell",
+    "pageCount": 328
+  },
+  {
+    "id": 3,
+    "title": "The Lord of the Rings",
+    "coverImgUrl": "https://m.media-amazon.com/images/I/71jLBXtWJWL._AC_UF1000,1000_QL80_.jpg",
+    "author": "J.R.R. Tolkien",
+    "pageCount": 1178
+  },
+  {
+    "id": 4,
+    "title": "Pride and Prejudice",
+    "coverImgUrl": "https://m.media-amazon.com/images/I/41xS13jH89L.jpg",
+    "author": "Jane Austen",
+    "pageCount": 279
+  },
+  {
+    "id": 5,
+    "title": "The Catcher in the Rye",
+    "coverImgUrl": "https://media.s-bol.com/YQVyzO8XWjZO/507x840.jpg",
+    "author": "J.D. Salinger",
+    "pageCount": 234
+  },
+  {
+    "id": 6,
+    "title": "Harry Potter and the Sorcerer's Stone",
+    "coverImgUrl": "https://m.media-amazon.com/images/I/71HbYElfY0L._AC_UF1000,1000_QL80_.jpg",
+    "author": "J.K. Rowling",
+    "pageCount": 320
+  },
+  {
+    "id": 7,
+    "title": "The Great Gatsby",
+    "coverImgUrl": "https://m.media-amazon.com/images/I/71FTb9X6wsL._AC_UF1000,1000_QL80_.jpg",
+    "author": "F. Scott Fitzgerald",
+    "pageCount": 180
+  },
+  {
+    "id": 8,
+    "title": "The Hobbit",
+    "coverImgUrl": "https://m.media-amazon.com/images/I/710+HcoP38L._AC_UF1000,1000_QL80_.jpg",
+    "author": "J.R.R. Tolkien",
+    "pageCount": 310
+  },
+  {
+    "id": 9,
+    "title": "Fahrenheit 451",
+    "coverImgUrl": "https://media.s-bol.com/VO1wwqL0GLLW/762x1200.jpg",
+    "author": "Ray Bradbury",
+    "pageCount": 208
+  },
+  {
+    "id": 10,
+    "title": "Brave New World",
+    "coverImgUrl": "https://m.media-amazon.com/images/I/81zE42gT3xL.jpg",
+    "author": "Aldous Huxley",
+    "pageCount": 311
+  }
+]
