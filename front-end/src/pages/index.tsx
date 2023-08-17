@@ -5,7 +5,7 @@ export default function Home() {
   return (
     <>
       <NavBar />
-      <h1>Home Page</h1>
+      <h1>Welcome to the Book Club</h1>
        <TheBookList /> 
      
       

@@ -4,7 +4,8 @@ import axios from "axios";
 import { BookProgress } from "../components/BookList";
 import WithToken from "../components/Withtoken";
 import NavBar from "../components/NavBar";
-import { z } from "zod";
+import Image from "next/image";
+
 
 export interface Book {
   id: number;
@@ -15,16 +16,15 @@ export interface Book {
   bookProgress: BookProgress[];
 }
 
-
-
 const BookPage = () => {
-  const [getBook, setBook] = useState<null | Book>(null);
+  const [getBook, setBook] = useState<Book | null>(null);
   // Get the router
   const router = useRouter();
   // From the router get the part of the URL we want (inside of query)
   const bookIdFromUrl = router.query.bookId;
+
   useEffect(() => {
-    console.log("starting the effect");
+    
     // Check if the value from the router.query already exists
     if (bookIdFromUrl === undefined) {
       // if not stop (empty return)
@@ -41,8 +41,7 @@ const BookPage = () => {
     };
     // CALL the function
     getBookFromApi();
-  }, [bookIdFromUrl]); // Look at 'bookIdFromUrl' and if it changes run again
-  // waiting for the request to complete
+  }, [bookIdFromUrl]); // when 'bookIdFromUrl' change it run again
 
   if (getBook === null) {
     return <div>Loading ...</div>;
@@ -53,7 +52,12 @@ const BookPage = () => {
       <NavBar />
       <div>
         <h1> {getBook.title} </h1>
-        <img src={getBook.coverImgUrl} alt="book picture" />
+        <Image
+          src={getBook.coverImgUrl}
+          alt="book picture"
+          width={300}
+          height={300}
+        />
         <h2>Author: {getBook.author}</h2>
         <p>Pagecount:{getBook.pageCount} pages</p>
         <p>Amount of bookProgress:{getBook.bookProgress.length}</p>

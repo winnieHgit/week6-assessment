@@ -35,7 +35,7 @@ const WithToken = (props: WithTokenProps) => {
     return (
       <div>
         <p>
-          your are not log in.Log in <Link href="/login">Log in </Link>
+          Login to start reading <Link href="/login">Log in </Link>
         </p>
       </div>
     );
