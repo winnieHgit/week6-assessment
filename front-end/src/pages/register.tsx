@@ -5,6 +5,7 @@ import { useRouter } from "next/router";
 import axios from "axios";
 import NavBar from "./components/NavBar";
 
+  
 const RegisterFromValidator = z.object({
   username: z.string().min(5),
   password: z.string().min(10),

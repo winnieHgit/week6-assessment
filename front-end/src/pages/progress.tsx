@@ -6,6 +6,9 @@ import { useRouter } from "next/router";
 import NavBar from "./components/NavBar";
 import WithToken from "./components/Withtoken";
 import Link from "next/link";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useForm } from "react-hook-form";
+import ProgressUpdateForm from "./components/progress-update";
 
 interface BookUser {
   id: number;
@@ -29,6 +32,8 @@ interface UserProgressProps {
   pageProgress: number;
 }
 
+
+
 const UserProgress = () => {
   const [getUserProgress, setBUserProgress] = useState<
     UserProgressProps[] | null
@@ -40,16 +45,16 @@ const UserProgress = () => {
     const getUserProgressfromApi = async (token: string) => {
       try {
         const response = await axios.get(`http://localhost:3007/bookprogress`, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
 
-      // Store the data of the response inside our memory
-      setBUserProgress(response.data);
-    } catch (error) {
-      console.log("message:`Log in to see the progress`")
-    };
+        // Store the data of the response inside our memory
+        setBUserProgress(response.data);
+      } catch (error) {
+        console.log("message:`Log in to see the progress`");
+      }
     };
     const token = localStorage.getItem("token");
     if (token === null) {
@@ -64,6 +69,8 @@ const UserProgress = () => {
     return <div>Loading books...</div>;
   }
 
+
+
   return (
     <WithToken>
       <div>
@@ -72,24 +79,26 @@ const UserProgress = () => {
 
         {getUserProgress.map((userprogress: UserProgressProps) => {
           return (
-            <div key={userprogress.id}>
+            <div  key={userprogress.id}>
               <div key={userprogress.bookId}>
-              <Link href={`/books/${userprogress.bookId}`}>
-              <h2>{userprogress.book.title}</h2>
+                <Link href={`/books/${userprogress.bookId}`}>
+                  <h2>{userprogress.book.title}</h2>
 
-              <Image
-                src={userprogress.book.coverImgUrl}
-                alt={`Image of ${userprogress.book.title}`}
-                width={300}
-                height={300}
-              />
-              </Link>
+                  <Image
+                    src={userprogress.book.coverImgUrl}
+                    alt={`Image of ${userprogress.book.title}`}
+                    width={300}
+                    height={300}
+                  />
+                </Link>
               </div>
               <p>BookProgress:{userprogress.pageProgress}</p>
               <p>
                 Progress status: {userprogress.pageProgress}/
                 {userprogress.book.pageCount} read
               </p>
+              <ProgressUpdateForm  />
+             
             </div>
           );
         })}

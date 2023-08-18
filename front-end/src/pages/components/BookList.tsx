@@ -20,51 +20,49 @@ export interface BookListProps {
 }
 
 const TheBookList = () => {
-  const [getBookList, setBookList] = useState<BookListProps[] | null>(null);
+  const [getBookList, setBookList] = useState<BookListProps[]>([]);
 
   //sort by name/popularity
   const [getFilter, setFilter] = useState<"name" | "popularity">("name");
 
-  console.log("check?");
+  //get the code for sorting alohabetically from "https://stackoverflow.com/questions/47998188/how-to-sort-an-object-alphabetically-within-an-array-in-react-js"
+
+  const sortByName = (a: BookListProps, b: BookListProps) =>
+    a.title.localeCompare(b.title);
+
+  const sortByPopularity = (a: BookListProps, b: BookListProps) =>
+    b.bookProgress.length - a.bookProgress.length;
 
   const getBooksFromApi = async () => {
-    // try {
-    const response = await axios.get(`http://127.0.0.1:3007/books`);
+    try {
+      const response = await axios.get(`http://localhost:3007/books`);
 
-    //get the code for sorting alohabetically from "https://stackoverflow.com/questions/47998188/how-to-sort-an-object-alphabetically-within-an-array-in-react-js"
+      const bookDefaultSorting = response.data.sort(sortByName);
 
-    const bookDefaultSorting = response.data.sort(
-      (a: BookListProps, b: BookListProps) => a.title.localeCompare(b.title)
-    );
+      setBookList(bookDefaultSorting);
+    } catch (error) {
+      console.log("Something went wrong!");
+    }
+  };
 
-    //sorting by name(by name.length-ascending) or by popularity
-    const bookSortByName = () => {
-      const sortBook = response.data.sort(
-        (a: BookListProps, b: BookListProps) => a.title.length - b.title.length
-      );
-      setBookList(sortBook);
-      setFilter("name");
-    };
+  //sorting by name
+  const bookSortByName = () => {
+    const sortBook = getBookList.sort(sortByName);
+    // setBookList(sortBook);
+    setFilter("name");
+  };
 
-    const booksByPopularity = () => {
-      const sortBook = response.data.sort(
-        (a: BookListProps, b: BookListProps) =>
-          b.bookProgress.length - a.bookProgress.length
-      );
-      setBookList(sortBook);
-      setFilter("popularity");
-    };
+  //sorting by popularity
+  const bookSortByPopularity = () => {
+    const sortBook = getBookList.sort(sortByPopularity);
 
-    setBookList(response.data);
-
-    // } catch (error) {
-    //   console.log("Something went wrong!");
-    // }
+    // setBookList(sortBook);
+    setFilter("popularity");
   };
 
   useEffect(() => {
     getBooksFromApi();
-  }, [getBookList]);
+  }, []);
 
   if (getBookList === null) {
     return <p>Book not found!</p>;
@@ -72,9 +70,9 @@ const TheBookList = () => {
     return (
       <>
         <div>
-           
-          {/* <button onClick={bookSortByName} >By name</button> */}
-          <button >Sort by Popularity</button>
+          <p>Currently sorted by {getFilter} </p>
+          <button onClick={bookSortByName}>name</button>
+          <button onClick={bookSortByPopularity}>Popularity</button>
         </div>
         <ul>
           {getBookList.map((books: BookListProps) => {
@@ -85,8 +83,8 @@ const TheBookList = () => {
                     <Image
                       src={books.coverImgUrl}
                       alt={`Image of ${books.title}`}
-                      width={200}
-                      height={200}
+                      width={300}
+                      height={300}
                     />
                   </div>
                   <div>
@@ -96,6 +94,7 @@ const TheBookList = () => {
 
                     <p>Author: {books.author}</p>
                     <p>Pagecount: {books.pageCount} pages</p>
+                    <p>Currently {books.bookProgress.length} user(s) reading</p>
                   </div>
                 </Link>
               </div>

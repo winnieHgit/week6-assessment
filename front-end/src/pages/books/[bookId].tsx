@@ -5,7 +5,7 @@ import { BookProgress } from "../components/BookList";
 import WithToken from "../components/Withtoken";
 import NavBar from "../components/NavBar";
 import Image from "next/image";
-
+import StartReadingFunction from "../components/StartReading";
 
 export interface Book {
   id: number;
@@ -24,7 +24,6 @@ const BookPage = () => {
   const bookIdFromUrl = router.query.bookId;
 
   useEffect(() => {
-    
     // Check if the value from the router.query already exists
     if (bookIdFromUrl === undefined) {
       // if not stop (empty return)
@@ -47,6 +46,16 @@ const BookPage = () => {
     return <div>Loading ...</div>;
   }
 
+  let totalProgress = 0;
+  for (let i = 0; i < getBook.bookProgress.length; i++) {
+    const currentProgress = getBook.bookProgress[i];
+    totalProgress = currentProgress.pageProgress;
+
+    // if (getBook.bookProgress.length===0){
+    //     return("No progress")
+    // }
+  }
+
   return (
     <>
       <NavBar />
@@ -60,10 +69,19 @@ const BookPage = () => {
         />
         <h2>Author: {getBook.author}</h2>
         <p>Pagecount:{getBook.pageCount} pages</p>
-        <p>Amount of bookProgress:{getBook.bookProgress.length}</p>
+        <p>Currently {getBook.bookProgress.length} user(s) reading</p>
+
+        {getBook.bookProgress.length === 0 ? (
+          <p> Average pageProgress: No progress</p>
+        ) : (
+          <p>
+            Average pageProgress: {totalProgress / getBook.bookProgress.length}
+          </p>
+        )}
         <div>
           <WithToken>
-            <button> Start reading book</button>
+            {/* <button > Start reading book</button> */}
+            <StartReadingFunction />
           </WithToken>
         </div>
       </div>

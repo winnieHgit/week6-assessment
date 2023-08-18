@@ -177,7 +177,7 @@ app.post(
       await prisma.bookProgress.create({
         data: {
           pageProgress: 0,
-          bookId: requestBody.bookId,
+          bookId: parseInt(requestBody.bookId),
           userId: requestedUser,
         },
       });
@@ -211,8 +211,8 @@ app.get(
           select: {
             id: true,
             title: true,
-            coverImgUrl:true,
-            author:true,
+            coverImgUrl: true,
+            author: true,
             pageCount: true,
           },
         },
@@ -232,3 +232,22 @@ app.get(
     response.send(myProgress);
   }
 );
+
+//PATCH-update /bookprogress/:id
+
+app.patch("/bookprogress/:id", async (request, response) => {
+  const bookProgressId = parseInt(request.params.id);
+  try {
+    await prisma.bookProgress.update({
+      where: {
+        id: bookProgressId,
+      },
+      data: {
+        pageProgress: request.body.progress,
+      },
+    });
+    response.status(201).send({ message: "Bookprogress updated!" });
+  } catch {
+    response.status(500).send({ message: "Something went wrong!" });
+  }
+});
